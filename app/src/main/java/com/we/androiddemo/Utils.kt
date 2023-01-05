@@ -17,3 +17,14 @@ object Utils {
         )
     }
 }
+
+
+inline val Float.px: Float
+    get() = run {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            this,
+            Resources.getSystem().displayMetrics
+        )
+    }
+
