@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 rootProject.name = "Android Demo"
 include ':app'
 include ':opengl3d'
-include ':aar_import'
