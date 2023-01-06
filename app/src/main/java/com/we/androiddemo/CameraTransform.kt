@@ -21,9 +21,24 @@ class CameraTransform(context: Context, attrs: AttributeSet) : View(context, att
     private val mCamera = Camera()
     private var bitmapAvatar: Bitmap
 
+    var bottomFlip = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var topFlip = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var rotationFlip = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
     init {
         bitmapAvatar = getAvatar(bitmapWidth.toInt())
-        mCamera.rotateX(45f)
         mCamera.setLocation(0f, 0f, -6f * resources.displayMetrics.density)
     }
 
@@ -31,9 +46,13 @@ class CameraTransform(context: Context, attrs: AttributeSet) : View(context, att
         //裁剪上半部分
         canvas.save()
         canvas.translate(marginSpace + bitmapWidth / 2, marginSpace + bitmapWidth / 2)
-        canvas.rotate(-30f)
+        canvas.rotate(-rotationFlip)
+        mCamera.save()
+        mCamera.rotateX(topFlip)
+        mCamera.applyToCanvas(canvas)
+        mCamera.restore()
         canvas.clipRect(-(bitmapWidth), -(bitmapWidth), bitmapWidth, 0f)
-        canvas.rotate(30f)
+        canvas.rotate(rotationFlip)
         canvas.translate(-(marginSpace + bitmapWidth / 2), -(marginSpace + bitmapWidth / 2))
         canvas.drawBitmap(bitmapAvatar, marginSpace, marginSpace, paint)
         canvas.restore()
@@ -41,10 +60,13 @@ class CameraTransform(context: Context, attrs: AttributeSet) : View(context, att
         //裁剪下半部分
         canvas.save()
         canvas.translate(marginSpace + bitmapWidth / 2, marginSpace + bitmapWidth / 2)
-        canvas.rotate(-30f)
+        canvas.rotate(-rotationFlip)
+        mCamera.save()
+        mCamera.rotateX(bottomFlip)
         mCamera.applyToCanvas(canvas)
+        mCamera.restore()
         canvas.clipRect(-(bitmapWidth), 0f, bitmapWidth, bitmapWidth)
-        canvas.rotate(30f)
+        canvas.rotate(rotationFlip)
         canvas.translate(-(marginSpace + bitmapWidth / 2), -(marginSpace + bitmapWidth / 2))
         canvas.drawBitmap(bitmapAvatar, marginSpace, marginSpace, paint)
         canvas.restore()

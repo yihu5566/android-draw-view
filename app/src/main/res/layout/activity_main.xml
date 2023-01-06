@@ -17,6 +17,7 @@
         android:visibility="gone" />
 
     <com.we.androiddemo.CameraTransform
+        android:id="@+id/cam_view"
         android:layout_width="400dp"
         android:layout_height="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
