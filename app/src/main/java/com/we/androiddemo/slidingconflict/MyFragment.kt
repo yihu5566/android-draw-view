@@ -11,8 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.we.androiddemo.R
 import com.we.androiddemo.databinding.FragmentMyBinding
+import com.we.androiddemo.databinding.ItemFragmentText2Binding
 import com.we.androiddemo.databinding.ItemFragmentTextBinding
 
 /**
@@ -41,6 +43,12 @@ class MyFragment : Fragment() {
         binding.rlv.layoutManager = LinearLayoutManager(requireContext())
         val recyclerAdapter = RecyclerAdapter(requireContext(), listOf)
         binding.rlv.adapter = recyclerAdapter
+
+        binding.rlvHo.layoutManager =
+            LinearLayoutManager(requireContext(), HORIZONTAL, false)
+        val recyclerAdapter2 = RecyclerAdapter2(requireContext())
+
+        binding.rlvHo.adapter = recyclerAdapter2
     }
 
     class RecyclerAdapter(val mContext: Context, val dataList: MutableList<String>) :
@@ -56,6 +64,22 @@ class MyFragment : Fragment() {
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             holder.itemView.findViewById<TextView>(R.id.text).text = dataList[position]
+        }
+    }
+
+    class RecyclerAdapter2(val mContext: Context) :
+        Adapter<MyViewHolder>() {
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+            return MyViewHolder(ItemFragmentText2Binding.inflate(LayoutInflater.from(mContext)).root)
+        }
+
+        override fun getItemCount(): Int {
+            return 30
+        }
+
+        override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
         }
     }
 
