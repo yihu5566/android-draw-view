@@ -10,6 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.we.androiddemo.R
 import com.we.androiddemo.databinding.ActivitySllidingConflictBinding
+import com.we.androiddemo.mvidemo.MviDemoFragment
 
 /**
  * @Author : dongfang
@@ -38,7 +39,7 @@ class SlidingConflictActivity : AppCompatActivity() {
         }
 
         override fun createFragment(position: Int): Fragment {
-            return MyFragment()
+            return MviDemoFragment()
         }
     }
 }
