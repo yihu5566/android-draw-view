@@ -2,13 +2,10 @@ package com.we.androiddemo
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
-import android.os.Looper
-import android.view.SurfaceView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.util.TimeUtils
-import kotlin.concurrent.thread
+import com.we.androiddemo.news_comment.CommentNewsActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +25,12 @@ class MainActivity : AppCompatActivity() {
         rotationFlipAnimator.duration = 1000
 
         val animatorSet = AnimatorSet()
-        animatorSet.playSequentially(bottomFlipAnimator, rotationFlipAnimator,topFlipAnimator)
+        animatorSet.playSequentially(bottomFlipAnimator, rotationFlipAnimator, topFlipAnimator)
         animatorSet.start()
+
+        cameraTransform.setOnClickListener {
+            startActivity(Intent(this, CommentNewsActivity::class.java))
+        }
 
     }
 }
