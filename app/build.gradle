@@ -47,6 +47,7 @@ dependencies {
     implementation 'com.airbnb.android:mavericks:3.0.6'
     implementation 'com.airbnb.android:mavericks-common:3.0.5'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
 
 
 }
