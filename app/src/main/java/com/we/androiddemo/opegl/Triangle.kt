@@ -1,6 +1,7 @@
-package com.we.androiddemo
+package com.we.androiddemo.opegl
 
 import android.opengl.GLES20
+import com.we.androiddemo.opegl.MyRender
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer

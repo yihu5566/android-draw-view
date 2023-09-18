@@ -1,4 +1,4 @@
-package com.we.androiddemo
+package com.we.androiddemo.opegl
 
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView

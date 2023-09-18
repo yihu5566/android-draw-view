@@ -1,7 +1,8 @@
-package com.we.androiddemo
+package com.we.androiddemo.opegl
 
 import android.content.Context
 import android.opengl.GLSurfaceView
+import com.we.androiddemo.opegl.MyRender
 
 /**
  * @Author : dongfang

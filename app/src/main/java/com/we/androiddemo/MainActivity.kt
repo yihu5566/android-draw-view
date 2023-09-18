@@ -2,10 +2,12 @@ package com.we.androiddemo
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.we.androiddemo.news_comment.CommentNewsActivity
+import com.we.androiddemo.chainlinkdemo.AbsDialog
+import com.we.androiddemo.chainlinkdemo.AdDialog
+import com.we.androiddemo.chainlinkdemo.CommentDialog
+import com.we.androiddemo.chainlinkdemo.PolicyDialog
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,9 +29,20 @@ class MainActivity : AppCompatActivity() {
         val animatorSet = AnimatorSet()
         animatorSet.playSequentially(bottomFlipAnimator, rotationFlipAnimator, topFlipAnimator)
         animatorSet.start()
-
+        //模拟打开app
+        val dialogs = mutableListOf<AbsDialog>()
+        dialogs.add(PolicyDialog(this))
+        dialogs.add(CommentDialog(this))
+        dialogs.add(AdDialog(this))
+        //根据优先级排序
+        dialogs.sortBy { it.getPriority() }
+        //创建链条
+        for (i in 0 until dialogs.size - 1) {
+            dialogs[i].setNextDialog(dialogs[i + 1])
+        }
         cameraTransform.setOnClickListener {
-            startActivity(Intent(this, CommentNewsActivity::class.java))
+//            startActivity(Intent(this, CommentNewsActivity::class.java))
+            dialogs[0].showDialog()
         }
 
     }
